@@ -1,0 +1,39 @@
+name: Build iOS Tweak Realtime Menu
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-13
+    steps:
+    - name: Checkout mã nguồn
+      uses: actions/checkout@v3
+
+    - name: Thiết lập môi trường biên dịch (Theos)
+      run: |
+        echo "THEOS=$HOME/theos" >> $GITHUB_ENV
+        git clone --recursive https://github.com/theos/theos.git $HOME/theos
+
+    - name: Tải iOS SDK
+      run: |
+        git clone https://github.com/theos/sdks.git $HOME/theos/sdks
+
+    - name: Tiến hành biên dịch Tweak
+      run: |
+        cd ${{ github.workspace }}
+        make clean
+        make FINALPACKAGE=1
+      env:
+        THEOS: ${{ env.THEOS }}
+
+    - name: Thu thập file dylib thành phẩm
+      uses: actions/upload-artifact@v3
+      with:
+        name: FMS-SuperMenu-Dylib
+        path: |
+          .theos/obj/**/*.dylib
+
+
