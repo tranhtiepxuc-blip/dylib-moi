@@ -1,0 +1,9 @@
+{
+    Filter = {
+        Bundles = (
+            "com.gfd.fmsbinhthuan"
+        );
+    };
+}
+
+
