@@ -1,0 +1,9 @@
+Package: com.duc.fmssupermenu
+Name: FMSSuperMenu
+Depends: mobilesubstrate
+Version: 1.0.0
+Architecture: iphoneos-arm
+Description: Tweak menu nổi chuyên nghiệp fake ảnh và GPS chạy tuyến GPX cho FMS Bình Thuận.
+Maintainer: Duc
+Author: Duc
+
